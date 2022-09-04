@@ -9,11 +9,13 @@ const api = axios.create({
   timeout: 10000
 })
 
-const materiel = async (credentials) => {
-  const response = await api.post('', credentials)
-  return response.data
+const materiel = async (id) => {
+  try {
+    const response = await api.get(`${id}`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
 }
 
-export {
-  materiel
-}
+export {materiel};

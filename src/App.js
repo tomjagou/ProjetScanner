@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Dimensions, Text } from "react-native";
+import { View, Dimensions, Text, TouchableOpacity } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 import * as Animatable from "react-native-animatable";
+import { useNavigation } from '@react-navigation/native';
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -10,7 +11,13 @@ console.disableYellowBox = true;
 
 class App extends Component {
   onSuccess(e) {
-    alert(e);
+    const navigation = useNavigation()
+  return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('PageInfos', {id: e._id})}>
+          <Text>Voir le matériel</Text>
+    </TouchableOpacity>
+  )
   }
 
   makeSlideOutTranslation(translationType, fromValue) {
